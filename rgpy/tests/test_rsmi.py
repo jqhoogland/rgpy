@@ -1,7 +1,7 @@
 import math
 import _pickle as pickle
-from rsmi_renormalization.rsmi import *
-from rsmi_renormalization.samplers import *
+from rgpy.rsmi import *
+from rgpy.samplers import *
 
 crit_J = math.log(1 + math.sqrt(2)) / 2
 Js_unitless = np.arange(2, 5, 0.5)

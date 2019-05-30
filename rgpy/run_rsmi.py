@@ -1,6 +1,6 @@
 import math, os
 
-from rsmi_renormalization.rsmi import *
+from rgpy.rsmi import *
 
 CRIT_J = math.log(1 + math.sqrt(2)) / 2
 

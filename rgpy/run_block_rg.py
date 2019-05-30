@@ -1,6 +1,6 @@
 import math, os
 
-from rsmi_renormalization.rsmi import *
+from rgpy.rsmi import *
 
 CRIT_J = math.log(1 + math.sqrt(2)) / 2
 
@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
     # We create samples at each length scale so we can measure
     # the flow of parameters through RG
-    lattice_widths = [16]
+    lattice_widths = [64]
     Js =  (CRIT_J *
            np.array([[.5, .8, .9, 1, 1.1, 1.2, 1.5]]))
 

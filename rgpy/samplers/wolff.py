@@ -30,7 +30,7 @@ from tqdm import tqdm
 
 import numpy as np
 
-from rsmi_renormalization import visualize
+from rgpy import visualize
 
 #np.set_printoptions(threshold=sys.maxsize)
 

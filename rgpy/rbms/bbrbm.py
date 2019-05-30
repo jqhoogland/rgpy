@@ -1,8 +1,8 @@
 import tensorflow as tf
 from tensorflow.train import AdamOptimizer
 
-from rsmi_renormalization.rbms import CDRBM
-from rsmi_renormalization.util import sample_bernoulli
+from rgpy.rbms import CDRBM
+from rgpy.util import sample_bernoulli
 
 class BBRBM(CDRBM):
     def get_kth_layers(self, x, y, k, is_last_sampled=tf.constant(False)):

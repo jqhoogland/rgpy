@@ -7,7 +7,7 @@ import numpy as np
 import tensorflow as tf
 import tensorflow_probability as tfp
 
-from rsmi_renormalization import visualize
+from rgpy import visualize
 #------------------------------------------------------------------------
 #
 # Base Lattice Kernel

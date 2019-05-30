@@ -6,11 +6,11 @@ import numpy as np
 import tensorflow as tf
 import tensorflow_probability as tfp
 
-import rsmi_renormalization.samplers
-import rsmi_renormalization.visualize
-from rsmi_renormalization.rbms import *
-from rsmi_renormalization.util import log_timer
-from rsmi_renormalization.standard import BlockRGTransform
+import rgpy.samplers
+import rgpy.visualize
+from rgpy.rbms import *
+from rgpy.util import log_timer
+from rgpy.standard import BlockRGTransform
 
 default_psi_rbm = {
     "n_hidden":2,

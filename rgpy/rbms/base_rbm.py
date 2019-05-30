@@ -4,9 +4,9 @@ from tensorflow.train import AdamOptimizer
 
 import numpy as np
 import sys
-from rsmi_renormalization.util import tf_xavier_init, sample_bernoulli
+from rgpy.util import tf_xavier_init, sample_bernoulli
 
-from rsmi_renormalization import visualize
+from rgpy import visualize
 
 class RBM (object):
     def __init__(self,

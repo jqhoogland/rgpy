@@ -1,3 +1,3 @@
-from rsmi_renormalization.samplers import ising_generator
+from rgpy.samplers import ising_generator
 
 ising_generator(mcmc="sw")

@@ -6,9 +6,9 @@ import tensorflow_probability as tfp
 from tensorflow.train import AdamOptimizer
 import numpy as np
 
-from rsmi_renormalization.util import tf_xavier_init
-from rsmi_renormalization.rbms import RBM
-from rsmi_renormalization import samplers
+from rgpy.util import tf_xavier_init
+from rgpy.rbms import RBM
+from rgpy import samplers
 
 class RGRBM(RBM):
     def __init__(self,
