@@ -21,6 +21,7 @@ The project is structured as follows:
   - Majority-rule block-spin renormalizatoin
 
 There are many future plans for this repository:
+- Integration with pyfissa (for onsite finite-size scaling analysis). Right now I'm doing the data analysis in spreadsheets, I know- it's embarassing.
 - MCMC implementations for other systems (O(N), N-spins Ising)
 - Implementations of other existing common RG procedures
 - Generalization of RSMI algorithm.
