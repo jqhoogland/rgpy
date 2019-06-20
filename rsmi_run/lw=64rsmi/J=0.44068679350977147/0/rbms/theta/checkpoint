@@ -1,0 +1,2 @@
+model_checkpoint_path: "theta.ckpt"
+all_model_checkpoint_paths: "theta.ckpt"

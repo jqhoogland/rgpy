@@ -1,0 +1,2 @@
+model_checkpoint_path: "psi.ckpt"
+all_model_checkpoint_paths: "psi.ckpt"

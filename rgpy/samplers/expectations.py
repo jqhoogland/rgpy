@@ -2,6 +2,7 @@ from typing import List, Callable, NamedTuple, Tuple
 import tensorflow as tf
 import numpy as np
 
+# Used by RG RBM, TODO: CONSOLIDATE
 def expectation(samples: List[List[tf.Tensor]],
                 fn: Callable[[List[tf.Tensor]], tf.Tensor]) -> tf.Tensor:
     """ tfp.monte_carlo.expectation didn't have the right functionality--
@@ -17,6 +18,8 @@ def expectations(samples: List[List[tf.Tensor]],
                  fns: List[Callable[[List[tf.Tensor]], tf.Tensor]]) -> List[tf.Tensor]:
     return [expectation(samples, fn) for fn in fns]
 
+
+# USED BY RSMI
 class Expectation(object):
     def __init__(self, lattice_width):
         self.set_lattice_width(lattice_width)
@@ -26,13 +29,30 @@ class Expectation(object):
         self.lattice_width = lattice_width
         self.n_spins = lattice_width ** 2
 
+    def get_susceptibility(self, samples):
+        """ Returns the magnetic susceptibility:
+        chi = <s_0 s_j> - < s_0>^2
+
+        Args:
+            samples (tf.Tensor of shape [batch_size, lattice_width**2])
+        """
+        # We compute chi per sample (so we can get both mean and std)
+        # Take outer product to get array of shape
+        # [batch_size, lattice_width**2, lattice_width**2]
+        # collapse last two axes, then average over this axis.
+        print(samples[0], (np.expand_dims(samples, 2) * np.expand_dims(samples, 1))[0])
+        M_squared = float(self.get_magnetization(samples)['mean']) ** 2
+        sisj = np.mean(np.reshape(np.expand_dims(samples, 2) * np.expand_dims(samples, 1),
+                       [samples.shape[0], -1]), axis=1)
+        chi = sisj - M_squared
+        return {'mean': str(np.mean(chi)), 'std': str(np.std(chi))}
+
     def get_magnetization(self, samples, absolute_value=tf.constant(True)):
         """ Returns the magnetization of
         absolute_value is True, has no effect
         """
-        magnetization = lambda x: tf.abs(tf.reduce_mean(x, axis=1))
-
-        return self.get_expectation(magnetization, samples)
+        M = np.abs(np.mean(samples, axis=1))
+        return {'mean': str(np.mean(M)), 'std': str(np.std(M))}
 
     def get_nn_correlation(self, samples, bdry_conds='helical'):
         """ Returns the nearest-neighbors correlation
@@ -87,7 +107,9 @@ class Expectation(object):
                 return self.get_nn_correlation(samples)
             elif fn == 'nnn_correlation':
                 return self.get_nnn_correlation(samples)
+            elif fn == 'susceptibility':
+                return self.get_susceptibility(samples)
 
-        expectation = tf.reduce_mean(fn(self.samples))
-        return  tf.Session().run(expectation,
-                                 feed_dict={self.samples: samples})
+        mean, std = tf.nn.moments(fn(self.samples), axes=[0])
+        mean_, std_ = tf.Session().run([mean, std],feed_dict={self.samples: samples})
+        return {'mean': str(mean_), 'std': str(std_)}

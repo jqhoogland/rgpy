@@ -60,7 +60,7 @@ class RGRBM(RBM):
         self.v = tf.placeholder(tf.float32, [None, self.n_visible])
         self.e = tf.placeholder(tf.float32, [None, self.n_environment])
 
-        # 2 args: [v, e]
+        # 2 args: [v, e], well what's the point of the lambda function then?x
         self.energy_theta_of_ve = lambda v, e:(
             energy_theta_of_ve(v, e))
 

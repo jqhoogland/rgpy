@@ -19,7 +19,10 @@ class BlockRGTransform(object):
         Args:
            batch_x: the visible configuration to transform shape [batch_size, n_visible]
         """
-        return np.sign(np.sum(2 * batch_x - 1, axis=1))
+        zeros = np.random.choice([-1, 1], batch_x.shape)
+        total = np.sign(np.sum(2 * batch_x - 1, axis=1))
+        total[total == 0] == zeros[total == 0]
+        return total
 
     def transform_nonbinary(self, batch_x):
         """
@@ -28,4 +31,7 @@ class BlockRGTransform(object):
         Args:
            batch_x: the visible configuration to transform
         """
-        return np.sign(np.sum(batch_x, axis=1))
+        zeros = np.random.choice([-1, 1], batch_x.shape)
+        total = np.sign(np.sum(batch_x, axis=1))
+        total[total == 0] == zeros[total == 0]
+        return total
