@@ -1,2 +1,0 @@
-model_checkpoint_path: "/Users/Jesse/Projects/capstone/rgpy/rsmi_run/lw=16/rbms/theta/theta.ckpt"
-all_model_checkpoint_paths: "/Users/Jesse/Projects/capstone/rgpy/rsmi_run/lw=16/rbms/theta/theta.ckpt"

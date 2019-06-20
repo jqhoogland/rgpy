@@ -132,4 +132,4 @@ dmypy.json
 *.tmp.py
 *.
 
-test.py
+rsmi_run/*
